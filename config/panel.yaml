@@ -1,0 +1,44 @@
+# Respiratory pathogen panel.
+#
+# The `accession` fields are RefSeq identifiers used by the real Nanopore
+# pipeline (pipeline/01_fetch_references.py) to download references. They are
+# not needed by the evaluation layer, which works from a count matrix.
+#
+# `c50_log10` is the log10 input concentration (genome copies / mL) at which
+# the simulator places roughly 50% detection. It is only used to generate the
+# synthetic example data and encodes that some targets are intrinsically
+# harder to detect than others (which is what makes the LoD table interesting).
+
+calling_threshold: 5          # reads assigned to a target to call it present
+replicates_per_level: 12      # replicates per (pathogen, concentration)
+# half-log spacing gives partial detection near the transition, which the
+# probit needs to identify a slope (integer steps cause perfect separation).
+input_levels_log10: [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0]
+negative_samples: 60          # pathogen-free samples, for specificity
+pileup_rate: 0.03             # spurious high-depth, low-breadth false positives
+
+pathogens:
+  - name: influenza_A
+    accession: NC_026431.1
+    genome_kb: 13.6
+    c50_log10: 2.6
+  - name: influenza_B
+    accession: NC_002204.1
+    genome_kb: 14.5
+    c50_log10: 2.9
+  - name: RSV
+    accession: NC_038235.1
+    genome_kb: 15.2
+    c50_log10: 3.1
+  - name: rhinovirus
+    accession: NC_038311.1
+    genome_kb: 7.1
+    c50_log10: 3.4
+  - name: norovirus
+    accession: NC_039477.1
+    genome_kb: 7.5
+    c50_log10: 3.6
+  - name: SARS_CoV_2
+    accession: NC_045512.2
+    genome_kb: 29.9
+    c50_log10: 2.4

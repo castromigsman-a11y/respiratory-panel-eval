@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+reads/
+references/
+*.bam
+*.bai
+*.sam
+*.fastq
+.DS_Store
+.venv/

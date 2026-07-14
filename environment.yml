@@ -1,0 +1,20 @@
+# Full environment including the optional Nanopore pipeline (pipeline/).
+name: respiratory-panel-eval
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - matplotlib
+  - pyyaml
+  - pytest
+  - biopython
+  - badread
+  - minimap2
+  - samtools
+  - pysam
